@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# Script to download a bunch of stuff from svtplay. Relies heavily on
+# svtplay-dl. In this script we use docker to run it, smart ey!
+# 
+# Author: deegan@monkii.net, https://github.com/deegan
+# 
+
+# Full path to where you want to store are you svtplay goodness.
+STORAGE=/mnt/drives/mnt2/barntv
+
+# enter the root path.
+cd $STORAGE
+
+# This can be a file either local or remote, you decide. Formating is simple
+# you add one show per line which matches with what svtplay uses. 
+# example: masterflygarna = https://www.svtplay.se/masterflygarna
+showlist=$(curl https://raw.githubusercontent.com/deegan/barntv/master/shows)
+
+# Loop through the list, checking if the show path already exists. If not then
+# create the directory and cd into it. If it does exist then just cd into it
+# and start running the docker image.
+for show in $showlist; do
+    if [ ! -d $STORAGE/$show ]; then
+        mkdir $STORAGE/$show
+    else
+        pwd 
+        cd $STORAGE/$show
+        docker run -d --rm --name svtplay_$show -u $(id -u):$(id -g) -v "$(pwd):/data" spaam/svtplay-dl -A https://svtplay.se/$show &
+    fi
+done
