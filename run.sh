@@ -29,7 +29,7 @@ for show in $showlist; do
     else
         pwd 
         cd $STORAGE/$show
-        docker run --rm --name svtplay_$show -u $(id -u):$(id -g) -v "$(pwd):/data" spaam/svtplay-dl -A https://svtplay.se/$show &
+        docker run -d --rm --name svtplay_$show -u $(id -u):$(id -g) -v "$(pwd):/data" spaam/svtplay-dl -A https://svtplay.se/$show &
         sleep 1 # this is very silly. But spawning containers too fast may cause them to not come up with a network connection and subsequently dies.
     fi
 done
