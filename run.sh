@@ -26,10 +26,9 @@ showlist=$(curl https://raw.githubusercontent.com/deegan/barntv/master/shows)
 for show in $showlist; do
     if [ ! -d $STORAGE/$show ]; then
         mkdir $STORAGE/$show
-    else
-        pwd 
-        cd $STORAGE/$show
-        docker run -d --rm --name svtplay_$show -u $(id -u):$(id -g) -v "$(pwd):/data" spaam/svtplay-dl -A https://svtplay.se/$show &
-        sleep 1 # this is very silly. But spawning containers too fast may cause them to not come up with a network connection and subsequently dies.
-    fi
+    fi 
+    pwd 
+    cd $STORAGE/$show
+    docker run -d --rm --name svtplay_$show -u $(id -u):$(id -g) -v "$(pwd):/data" spaam/svtplay-dl -A https://svtplay.se/$show &
+    sleep 1 # this is very silly. But spawning containers too fast may cause them to not come up with a network connection and subsequently dies.
 done
