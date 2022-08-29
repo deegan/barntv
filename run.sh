@@ -10,7 +10,7 @@
 docker pull spaam/svtplay-dl
 
 # Full path to where you want to store are you svtplay goodness.
-STORAGE=/mnt/drives/mnt2/barntv
+STORAGE=$(pwd)
 
 # enter the root path.
 cd $STORAGE
