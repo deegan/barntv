@@ -5,6 +5,11 @@
 # 
 # Author: deegan@monkii.net, https://github.com/deegan
 # 
+#
+# 
+echo "--------------------------------------------------------------"
+# print the date for logging purpose.
+date
 
 # make sure we have the latest version.
 docker pull spaam/svtplay-dl
@@ -43,3 +48,4 @@ else
       sleep 1 # this is very silly. But spawning containers too fast may cause them to not come up with a network connection and subsequently dies.
   done
 fi
+echo "--------------------------------------------------------------"
