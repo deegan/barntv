@@ -6,19 +6,21 @@
 # Author: deegan@monkii.net, https://github.com/deegan
 # 
 #
-# 
-echo "--------------------------------------------------------------"
-# print the date for logging purpose.
-date
-
-# make sure we have the latest version.
-docker pull spaam/svtplay-dl
-
 # Full path to where you want to store are you svtplay goodness.
-STORAGE=$(pwd)
+# STORAGE=$(pwd)
+STORAGE="/mnt/drives/mnt1/media/barntv"
 
 # enter the root path.
 cd $STORAGE
+
+# start with printing a neat line.
+echo "--------------------------------------------------------------"
+# print the date for logging purpose.
+date
+pwd
+
+# make sure we have the latest version.
+docker pull spaam/svtplay-dl
 
 # handle some input in case we just want to add a single show.
 if [ $1 ]; then  
