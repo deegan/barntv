@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Script to download a bunch of stuff from svtplay. Relies heavily on
 # svtplay-dl. In this script we use docker to run it, smart ey!
